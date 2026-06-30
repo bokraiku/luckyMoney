@@ -9,6 +9,7 @@ Flutter prototype for a Thai lottery, gold price, and money news app.
 - My Numbers page for saved lottery numbers and notification state.
 - Gold page with buy/sell prices, 7-day trend mock chart, calculator chips, and gold news.
 - News feed with category chips and native-ad placeholders.
+- Generated tab-specific background images under `assets/backgrounds/`.
 
 ## Tech
 
