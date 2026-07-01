@@ -29,8 +29,10 @@ Flutter prototype for a Thai lottery, gold price, and money news app.
 ### Lottery Check
 
 - 6-digit lottery number input with numeric-only filtering.
-- Prize matching against the current mock result.
+- Draw selector for latest and historical lottery results.
+- Prize matching through a reusable `LotteryResult.check()` domain method.
 - Winner and non-winner result states.
+- Save a checked number directly into My Numbers.
 - Prize board for:
   - First prize
   - Front 3 digits
@@ -40,7 +42,10 @@ Flutter prototype for a Thai lottery, gold price, and money news app.
 
 ### My Numbers
 
-- Saved lottery number list.
+- Saved lottery number list persisted locally with `SharedPreferences`.
+- Add a new 6-digit number from the My Numbers tab.
+- Save a checked number from the Lottery Check tab.
+- Delete saved numbers.
 - Draw date and note per saved number.
 - Status badges:
   - Waiting
@@ -82,9 +87,24 @@ Flutter prototype for a Thai lottery, gold price, and money news app.
 ## Tech
 
 - Flutter 3.32.8
+- Riverpod for app state.
+- SharedPreferences for local saved-number storage.
 - Android package: `com.callplay.luckymoney`
 - iOS bundle id: `com.callplay.luckymoney`
 - Mock data only for this first prototype.
+
+## Current Architecture
+
+```text
+lib/
+├─ app/              App shell, theme, navigation, background constants
+├─ data/             Mock lottery, gold, news, and seeded saved-number data
+├─ models/           Lottery, saved-number, gold, and news models
+├─ providers/        Riverpod providers and saved-number controller
+├─ repositories/     Lottery repository and local saved-number repository
+├─ screens/          Home, lottery check, my numbers, gold, and news screens
+└─ widgets/          Shared cards, tiles, buttons, and page surfaces
+```
 
 ## Run
 
