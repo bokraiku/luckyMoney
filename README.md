@@ -2,14 +2,82 @@
 
 Flutter prototype for a Thai lottery, gold price, and money news app.
 
-## Current UI
+## Features
+
+### App Shell
+
+- Flutter app scaffold for Android and iOS.
+- Material 3 theme with a clean finance-utility visual style.
+- Bottom navigation with 5 tabs:
+  - Home
+  - Lottery Check
+  - My Numbers
+  - Gold
+  - News
+- Tab-specific generated background images bundled from `assets/backgrounds/`.
+- Soft overlay surfaces so cards and Thai text stay readable on top of the images.
+
+### Home
 
 - Home dashboard with gold price, next lottery draw, quick actions, and top news.
-- Lottery checker with 6-digit input, mock prize board, and result state.
-- My Numbers page for saved lottery numbers and notification state.
-- Gold page with buy/sell prices, 7-day trend mock chart, calculator chips, and gold news.
-- News feed with category chips and native-ad placeholders.
-- Generated tab-specific background images under `assets/backgrounds/`.
+- Gold price summary card.
+- Next lottery draw countdown card.
+- Quick actions for checking a number and saving a number.
+- Top money-news preview feed.
+- Sponsored/native ad placeholder.
+
+### Lottery Check
+
+- 6-digit lottery number input with numeric-only filtering.
+- Prize matching against the current mock result.
+- Winner and non-winner result states.
+- Prize board for:
+  - First prize
+  - Front 3 digits
+  - Back 3 digits
+  - Last 2 digits
+- Banner ad placeholder.
+
+### My Numbers
+
+- Saved lottery number list.
+- Draw date and note per saved number.
+- Status badges:
+  - Waiting
+  - Winner
+  - Not winner
+- Notification toggle card for lottery result alerts.
+
+### Gold
+
+- Gold price screen with expanded buy/sell data.
+- Gold bar buy/sell price.
+- Gold ornament buy/sell price.
+- Latest price-change badge.
+- Mock 7-day trend chart.
+- Gold price calculator chips for:
+  - 1 baht
+  - 2 salung
+  - 1 salung
+  - Half salung
+- Gold news preview section.
+
+### News
+
+- Money-news feed for lottery, gold, government benefits, and scam alerts.
+- Category filter chips.
+- News cards with category, time, title, summary, and icon.
+- Native ad placeholder inside the feed.
+
+### Monetization-Ready UI
+
+- Banner/native ad placeholders are already placed in the main user flows.
+- Current ad components are placeholders only. Real Google AdMob integration is still a next step.
+
+### Current Prototype Data
+
+- Lottery result, saved numbers, gold prices, and news are mock data in `lib/main.dart`.
+- No backend, real API, Firebase, push notification, or AdMob SDK is connected yet.
 
 ## Tech
 
