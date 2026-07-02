@@ -8,6 +8,7 @@ Flutter prototype for a Thai lottery, gold price, and money news app.
 
 - Flutter app scaffold for Android and iOS.
 - Material 3 theme with a clean finance-utility visual style.
+- Light mode and dark mode toggle with persisted preference.
 - Bottom navigation with 5 tabs:
   - Home
   - Lottery Check
@@ -89,6 +90,7 @@ Flutter prototype for a Thai lottery, gold price, and money news app.
 - Flutter 3.32.8
 - Riverpod for app state.
 - SharedPreferences for local saved-number storage.
+- SharedPreferences for saved theme mode preference.
 - Android package: `com.callplay.luckymoney`
 - iOS bundle id: `com.callplay.luckymoney`
 - Mock data only for this first prototype.
@@ -101,7 +103,7 @@ lib/
 ├─ data/             Mock lottery, gold, news, and seeded saved-number data
 ├─ models/           Lottery, saved-number, gold, and news models
 ├─ providers/        Riverpod providers and saved-number controller
-├─ repositories/     Lottery repository and local saved-number repository
+├─ repositories/     Lottery, local saved-number, and theme settings repositories
 ├─ screens/          Home, lottery check, my numbers, gold, and news screens
 └─ widgets/          Shared cards, tiles, buttons, and page surfaces
 ```

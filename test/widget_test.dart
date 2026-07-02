@@ -39,4 +39,22 @@ void main() {
 
     expect(find.text('123456'), findsWidgets);
   });
+
+  testWidgets('toggles between light and dark mode', (tester) async {
+    await tester.pumpWidget(const ProviderScope(child: LuckyMoneyApp()));
+    await tester.pumpAndSettle();
+
+    expect(
+      tester.widget<MaterialApp>(find.byType(MaterialApp)).themeMode,
+      ThemeMode.light,
+    );
+
+    await tester.tap(find.byTooltip('เปลี่ยนเป็นโหมดมืด'));
+    await tester.pumpAndSettle();
+
+    expect(
+      tester.widget<MaterialApp>(find.byType(MaterialApp)).themeMode,
+      ThemeMode.dark,
+    );
+  });
 }

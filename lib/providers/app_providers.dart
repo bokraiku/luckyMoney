@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
 
@@ -5,6 +6,7 @@ import '../models/lottery_result.dart';
 import '../models/saved_lottery_number.dart';
 import '../repositories/lottery_repository.dart';
 import '../repositories/saved_numbers_repository.dart';
+import '../repositories/theme_settings_repository.dart';
 
 final lotteryRepositoryProvider = Provider<LotteryRepository>((ref) {
   return MockLotteryRepository();
@@ -21,6 +23,39 @@ final latestLotteryResultProvider = FutureProvider<LotteryResult>((ref) {
 final savedNumbersRepositoryProvider = Provider<SavedNumbersRepository>((ref) {
   return PrefsSavedNumbersRepository();
 });
+
+final themeSettingsRepositoryProvider = Provider<ThemeSettingsRepository>((
+  ref,
+) {
+  return PrefsThemeSettingsRepository();
+});
+
+final themeModeControllerProvider =
+    AsyncNotifierProvider<ThemeModeController, ThemeMode>(
+      ThemeModeController.new,
+    );
+
+class ThemeModeController extends AsyncNotifier<ThemeMode> {
+  ThemeSettingsRepository get _repository {
+    return ref.read(themeSettingsRepositoryProvider);
+  }
+
+  @override
+  Future<ThemeMode> build() {
+    return _repository.load();
+  }
+
+  Future<void> setMode(ThemeMode mode) async {
+    state = AsyncValue.data(mode);
+    await _repository.save(mode);
+  }
+
+  Future<void> toggle() async {
+    final current = state.asData?.value ?? await _repository.load();
+    final next = current == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark;
+    await setMode(next);
+  }
+}
 
 final savedNumbersControllerProvider =
     AsyncNotifierProvider<SavedNumbersController, List<SavedLotteryNumber>>(
