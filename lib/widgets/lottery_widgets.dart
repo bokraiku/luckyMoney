@@ -11,6 +11,8 @@ class LotteryCountdownCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -35,7 +37,7 @@ class LotteryCountdownCard extends StatelessWidget {
                   Text(
                     'พร้อมแจ้งเตือนเมื่อประกาศผล',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: const Color(0xFF64716D),
+                      color: colorScheme.onSurfaceVariant,
                     ),
                   ),
                 ],
@@ -142,6 +144,8 @@ class PrizeRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 7),
       child: Row(
@@ -149,16 +153,16 @@ class PrizeRow extends StatelessWidget {
           Expanded(
             child: Text(
               label,
-              style: Theme.of(
-                context,
-              ).textTheme.bodyMedium?.copyWith(color: const Color(0xFF64716D)),
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: colorScheme.onSurfaceVariant,
+              ),
             ),
           ),
           Text(
             value,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.w900,
-              color: const Color(0xFF0F766E),
+              color: colorScheme.primary,
             ),
           ),
         ],
@@ -181,10 +185,15 @@ class SavedNumberTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final color = switch (status) {
-      SavedNumberStatus.waiting => const Color(0xFF64748B),
-      SavedNumberStatus.winner => const Color(0xFF15803D),
-      SavedNumberStatus.notWinner => const Color(0xFFB45309),
+      SavedNumberStatus.waiting =>
+        isDark ? const Color(0xFFB7C4BE) : const Color(0xFF64748B),
+      SavedNumberStatus.winner =>
+        isDark ? const Color(0xFF6EE7A8) : const Color(0xFF15803D),
+      SavedNumberStatus.notWinner =>
+        isDark ? const Color(0xFFF4B76A) : const Color(0xFFB45309),
     };
 
     return Card(
@@ -197,14 +206,15 @@ class SavedNumberTile extends StatelessWidget {
               height: 48,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: const Color(0xFFF1F5F3),
+                color: colorScheme.surfaceContainerHighest,
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
                 item.number,
-                style: Theme.of(
-                  context,
-                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w900),
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w900,
+                  color: colorScheme.onSurface,
+                ),
               ),
             ),
             const SizedBox(width: 12),
@@ -216,6 +226,7 @@ class SavedNumberTile extends StatelessWidget {
                     item.drawDate,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       fontWeight: FontWeight.w800,
+                      color: colorScheme.onSurface,
                     ),
                   ),
                   const SizedBox(height: 3),
@@ -224,7 +235,7 @@ class SavedNumberTile extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: const Color(0xFF64716D),
+                      color: colorScheme.onSurfaceVariant,
                     ),
                   ),
                 ],

@@ -11,6 +11,7 @@ class GoldSummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final gold = mockGold;
+    final colorScheme = Theme.of(context).colorScheme;
 
     return Card(
       child: Padding(
@@ -37,7 +38,7 @@ class GoldSummaryCard extends StatelessWidget {
                       Text(
                         gold.updatedAt,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: const Color(0xFF64716D),
+                          color: colorScheme.onSurfaceVariant,
                         ),
                       ),
                     ],
@@ -111,6 +112,12 @@ class PriceColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final displayAccent = isDark
+        ? Color.lerp(accent, Colors.white, 0.48)!
+        : accent;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -120,13 +127,13 @@ class PriceColumn extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: Theme.of(
             context,
-          ).textTheme.bodySmall?.copyWith(color: const Color(0xFF64716D)),
+          ).textTheme.bodySmall?.copyWith(color: colorScheme.onSurfaceVariant),
         ),
         const SizedBox(height: 4),
         Text(
           value,
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
-            color: accent,
+            color: displayAccent,
             fontWeight: FontWeight.w900,
           ),
         ),
@@ -140,7 +147,9 @@ class GoldChartCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final values = [38, 44, 41, 48, 46, 54, 58];
+    final barColor = isDark ? const Color(0xFFE58E45) : const Color(0xFFB45309);
 
     return Card(
       child: Padding(
@@ -165,7 +174,7 @@ class GoldChartCard extends StatelessWidget {
                       child: Container(
                         height: value.toDouble(),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFB45309).withValues(alpha: 0.7),
+                          color: barColor.withValues(alpha: 0.84),
                           borderRadius: BorderRadius.circular(6),
                         ),
                       ),
@@ -225,23 +234,33 @@ class GoldWeightChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       decoration: BoxDecoration(
-        color: const Color(0xFFFFFBEB),
+        color: isDark ? const Color(0xFF322313) : const Color(0xFFFFFBEB),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: const Color(0xFFFDE68A)),
+        border: Border.all(
+          color: isDark ? const Color(0xFF8B5E28) : const Color(0xFFFDE68A),
+        ),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(label, style: Theme.of(context).textTheme.bodySmall),
+          Text(
+            label,
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: colorScheme.onSurfaceVariant,
+            ),
+          ),
           Text(
             '$value บาท',
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
               fontWeight: FontWeight.w800,
-              color: const Color(0xFF92400E),
+              color: isDark ? const Color(0xFFFFCF8A) : const Color(0xFF92400E),
             ),
           ),
         ],

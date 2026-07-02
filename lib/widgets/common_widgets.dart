@@ -14,14 +14,17 @@ class CircleIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final iconColor = _readableAccent(context, color);
+
     return Container(
       width: size,
       height: size,
       decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.12),
+        color: iconColor.withValues(alpha: isDark ? 0.2 : 0.12),
         shape: BoxShape.circle,
       ),
-      child: Icon(icon, color: color, size: size * 0.5),
+      child: Icon(icon, color: iconColor, size: size * 0.5),
     );
   }
 }
@@ -34,16 +37,19 @@ class CategoryPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final textColor = _readableAccent(context, color);
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.12),
+        color: textColor.withValues(alpha: isDark ? 0.2 : 0.12),
         borderRadius: BorderRadius.circular(999),
       ),
       child: Text(
         label,
         style: Theme.of(context).textTheme.labelSmall?.copyWith(
-          color: color,
+          color: textColor,
           fontWeight: FontWeight.w800,
         ),
       ),
@@ -58,21 +64,34 @@ class ChangePill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final background = isDark
+        ? const Color(0xFF123522)
+        : const Color(0xFFDCFCE7);
+    final foreground = isDark
+        ? const Color(0xFF9CF3B7)
+        : const Color(0xFF15803D);
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
-        color: const Color(0xFFDCFCE7),
+        color: background,
         borderRadius: BorderRadius.circular(999),
       ),
       child: Text(
         value,
         style: Theme.of(context).textTheme.labelLarge?.copyWith(
-          color: const Color(0xFF15803D),
+          color: foreground,
           fontWeight: FontWeight.w800,
         ),
       ),
     );
   }
+}
+
+Color _readableAccent(BuildContext context, Color color) {
+  final isDark = Theme.of(context).brightness == Brightness.dark;
+  return isDark ? Color.lerp(color, Colors.white, 0.35)! : color;
 }
 
 class SectionHeader extends StatelessWidget {

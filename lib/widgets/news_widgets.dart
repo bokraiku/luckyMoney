@@ -10,6 +10,8 @@ class NewsTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Card(
       child: InkWell(
         borderRadius: BorderRadius.circular(8),
@@ -42,7 +44,7 @@ class NewsTile extends StatelessWidget {
                             item.time,
                             overflow: TextOverflow.ellipsis,
                             style: Theme.of(context).textTheme.bodySmall
-                                ?.copyWith(color: const Color(0xFF64716D)),
+                                ?.copyWith(color: colorScheme.onSurfaceVariant),
                           ),
                         ),
                       ],
@@ -54,6 +56,7 @@ class NewsTile extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         fontWeight: FontWeight.w800,
+                        color: colorScheme.onSurface,
                       ),
                     ),
                     const SizedBox(height: 5),
@@ -62,7 +65,7 @@ class NewsTile extends StatelessWidget {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: const Color(0xFF64716D),
+                        color: colorScheme.onSurfaceVariant,
                       ),
                     ),
                   ],

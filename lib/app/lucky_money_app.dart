@@ -28,8 +28,8 @@ class LuckyMoneyApp extends ConsumerWidget {
       seedColor: seed,
       brightness: brightness,
     );
-    final outline = isDark ? const Color(0xFF31413E) : const Color(0xFFDCE3DE);
-    final surface = isDark ? const Color(0xF21B2422) : const Color(0xF7FFFFFF);
+    final outline = isDark ? const Color(0xFF3B4D48) : const Color(0xFFDCE3DE);
+    final surface = isDark ? const Color(0xFF17221F) : const Color(0xF7FFFFFF);
 
     return ThemeData(
       useMaterial3: true,
@@ -40,8 +40,8 @@ class LuckyMoneyApp extends ConsumerWidget {
           : const Color(0xFFF6F7F4),
       cardTheme: CardThemeData(
         color: surface,
-        elevation: isDark ? 0 : 0.5,
-        shadowColor: isDark ? Colors.transparent : const Color(0x22000000),
+        elevation: isDark ? 1 : 0.5,
+        shadowColor: isDark ? Colors.black54 : const Color(0x22000000),
         surfaceTintColor: Colors.transparent,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
@@ -52,7 +52,7 @@ class LuckyMoneyApp extends ConsumerWidget {
       navigationBarTheme: NavigationBarThemeData(
         height: 68,
         backgroundColor: isDark
-            ? const Color(0xF20F1B19)
+            ? const Color(0xFC0F1B19)
             : const Color(0xF8FFFFFF),
         indicatorColor: colorScheme.primary.withValues(alpha: 0.16),
         labelTextStyle: WidgetStateProperty.resolveWith((states) {

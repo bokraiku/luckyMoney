@@ -28,9 +28,9 @@ class AppPage extends ConsumerWidget {
     final currentMode = themeMode.asData?.value ?? ThemeMode.light;
     final overlayColors = isDark
         ? [
-            const Color(0xFF08100E).withValues(alpha: 0.58),
-            const Color(0xFF08100E).withValues(alpha: 0.78),
-            const Color(0xFF08100E).withValues(alpha: 0.94),
+            const Color(0xFF07100E).withValues(alpha: 0.72),
+            const Color(0xFF07100E).withValues(alpha: 0.86),
+            const Color(0xFF07100E).withValues(alpha: 0.97),
           ]
         : [
             Colors.white.withValues(alpha: 0.18),
@@ -38,7 +38,7 @@ class AppPage extends ConsumerWidget {
             const Color(0xFFF6F7F4).withValues(alpha: 0.94),
           ];
     final headerColor = isDark
-        ? const Color(0xE61B2422)
+        ? const Color(0xFA17221F)
         : Colors.white.withValues(alpha: 0.84);
     final headerBorderColor = isDark
         ? const Color(0xFF31413E)
